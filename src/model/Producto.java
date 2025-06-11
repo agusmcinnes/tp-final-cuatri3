@@ -1,8 +1,9 @@
 package model;
 
 import enums.TipoProducto;
+import interfaces.ObtenerID;
 
-public class Producto {
+public class Producto implements ObtenerID {
     private String nombre;
     private int id;
     private static int numId = 0;
