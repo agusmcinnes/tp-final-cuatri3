@@ -17,6 +17,10 @@ public class UserAdmin extends Usuario {
         this.ordenesTotales = new ArrayList<>();
     }
 
+    public UserAdmin (String gmail, String contraseña, int id){
+        super(gmail, contraseña, id, TipoUsuario.ADMINISTRADOR);
+    }
+
 //    public GestionCrud<Producto> getGestionProductos() {
 //        return gestionProductos;
 //    }

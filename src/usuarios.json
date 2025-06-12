@@ -1,0 +1,14 @@
+[
+  {
+    "gmail": "agustin@gmail.com",
+    "contraseña": "1234",
+    "id": 0,
+    "rol": "ADMINISTRADOR"
+  },
+  {
+    "gmail": "sofia@gmail.com",
+    "contraseña": "1234",
+    "id": 1,
+    "rol": "CLIENTE"
+  }
+]
