@@ -1,0 +1,16 @@
+[
+    {
+        "descripcion": "Juego de futbol muy interesante!",
+        "precio": 60000,
+        "categoria": "Deportes",
+        "id": 1,
+        "nombre": "Fifa"
+    },
+    {
+        "descripcion": "Robo masivo de autos",
+        "precio": 70000,
+        "categoria": "Acción",
+        "id": 2,
+        "nombre": "GTA V"
+    }
+]

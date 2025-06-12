@@ -4,7 +4,6 @@ import exceptions.UsuarioNoEncontrado;
 import model.usuario.Sesion;
 import model.usuario.UserAdmin;
 import model.usuario.UserCliente;
-import model.usuario.Usuario;
 import org.json.JSONException;
 import service.JsonUtiles;
 
