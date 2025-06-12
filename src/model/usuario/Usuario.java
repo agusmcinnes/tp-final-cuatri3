@@ -1,4 +1,47 @@
 package model.usuario;
 
-public class Usuario {
+import enums.TipoUsuario;
+
+public abstract class Usuario {
+    protected static int contadorIds = 1;
+
+    protected int id;
+    protected String gmail;
+    protected String contraseña;
+    protected TipoUsuario rol;
+
+    public Usuario(String gmail, String contraseña, TipoUsuario rol) {
+        this.id = contadorIds++;
+        this.gmail = gmail;
+        this.contraseña = contraseña;
+        this.rol = rol;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getGmail() {
+        return gmail;
+    }
+
+    public void setGmail(String gmail) {
+        this.gmail = gmail;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
+    public TipoUsuario getRol() {
+        return rol;
+    }
+
+   // public abstract void getMenu();
+
 }
+
