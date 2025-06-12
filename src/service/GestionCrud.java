@@ -23,7 +23,6 @@ public class GestionCrud<T extends ObtenerID> {
             Producto p = (Producto) producto;
             if (p.getNombre() == null || p.getNombre().isBlank()
                     || p.getPrecio() <= 0
-                    || p.getStock() < 0
                     || p.getDescripcion() == null || p.getDescripcion().isBlank()) {
                 throw new DatosIncompletosException("No se puede agregar el producto: datos incompletos o inválidos.");
             }
