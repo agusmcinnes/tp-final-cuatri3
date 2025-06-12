@@ -1,6 +1,6 @@
 package model;
 
-import enums.TipoProducto;
+import enums.CategoriaJuego;
 import interfaces.ObtenerID;
 
 public class Producto implements ObtenerID {
@@ -8,14 +8,14 @@ public class Producto implements ObtenerID {
     private int id;
     private static int numId = 0;
     private int precio;
-    private TipoProducto tipo;
+    private CategoriaJuego categoria;
     private String descripcion;
 
-    public Producto(String nombre, TipoProducto tipo, String descripcion, int precio) {
+    public Producto(String nombre, CategoriaJuego categoria, String descripcion, int precio) {
         this.nombre = nombre;
         this.id = numId++;
         this.precio = precio;
-        this.tipo = tipo;
+        this.categoria = categoria;
         this.descripcion = descripcion;
     }
 
@@ -43,12 +43,12 @@ public class Producto implements ObtenerID {
         this.id = id;
     }
 
-    public TipoProducto getTipo() {
-        return tipo;
+    public CategoriaJuego getCategoria() {
+        return categoria;
     }
 
-    public void setTipo(TipoProducto tipo) {
-        this.tipo = tipo;
+    public void setCategoria(CategoriaJuego categoria) {
+        this.categoria = categoria;
     }
 
 
