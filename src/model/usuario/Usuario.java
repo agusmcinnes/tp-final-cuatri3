@@ -16,6 +16,12 @@ public abstract class Usuario {
         this.contraseña = contraseña;
         this.rol = rol;
     }
+    public Usuario(String gmail, String contraseña, int id, TipoUsuario rol) {
+        this.id = id;
+        this.gmail = gmail;
+        this.contraseña = contraseña;
+        this.rol = rol;
+    }
 
     public int getId() {
         return id;
