@@ -7,15 +7,13 @@ public class Producto implements ObtenerID {
     private String nombre;
     private int id;
     private static int numId = 0;
-    private int stock;
     private int precio;
     private TipoProducto tipo;
     private String descripcion;
 
-    public Producto(String nombre, int stock, TipoProducto tipo, String descripcion, int precio) {
+    public Producto(String nombre, TipoProducto tipo, String descripcion, int precio) {
         this.nombre = nombre;
         this.id = numId++;
-        this.stock = stock;
         this.precio = precio;
         this.tipo = tipo;
         this.descripcion = descripcion;
@@ -53,13 +51,6 @@ public class Producto implements ObtenerID {
         this.tipo = tipo;
     }
 
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
 
     public String getDescripcion() {
         return descripcion;
