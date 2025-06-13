@@ -4,12 +4,13 @@ import enums.CategoriaJuego;
 import exceptions.OpcionInvalidaException;
 import exceptions.ProductoNoEncontrado;
 import model.Carrito;
+import model.Orden;
 import model.Producto;
 import model.usuario.Sesion;
 import model.usuario.UserCliente;
 import org.json.*;
 import service.JsonUtiles;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,7 +21,7 @@ public class MenuCliente {
     /*==================================================================*/
     public static void mostrarMenu() {
         Scanner sc = new Scanner(System.in);
-        UserCliente cliente = (UserCliente) Sesion.getUsuarioActual();   // siempre es cliente
+        UserCliente cliente = (UserCliente) Sesion.getUsuarioActual();
         Carrito carrito = cliente.getCarrito();
 
         while (true) {
@@ -48,15 +49,12 @@ public class MenuCliente {
             try {
                 switch (op) {
                     case 1 -> verJuegosDisponibles();
-                    case 2 -> agregarAlCarrito(sc, carrito);
+                    case 2 -> agregarAlCarrito(sc, carrito,cliente);
                     case 3 -> quitarDelCarrito(sc, carrito);
                     case 4 -> carrito.mostrarCarrito();
                     case 5 -> finalizarCompra(cliente, carrito);
                     case 6 -> verJuegosAdquiridos(cliente);
-                    case 0 -> {
-                        System.out.println("👋 Sesión cerrada.");
-                        return;
-                    }
+                    case 0 -> {System.out.println("👋 Sesión cerrada."); Sesion.cerrarSesion(); Menu.mostrarLogin();}
                     default -> throw new OpcionInvalidaException("Opción " + op + " no válida.");
                 }
             } catch (OpcionInvalidaException | ProductoNoEncontrado e) {
@@ -89,19 +87,24 @@ public class MenuCliente {
     }
 
     /*==================== 2. AGREGAR AL CARRITO =======================*/
-    private static void agregarAlCarrito(Scanner sc, Carrito carrito) throws JSONException {
+    private static void agregarAlCarrito(Scanner sc, Carrito carrito,UserCliente cliente) throws JSONException {
         JSONArray productos = leerProductos();
 
         System.out.print("Ingrese el ID del juego a agregar: ");
         int id = Integer.parseInt(sc.nextLine());
 
+        if (cliente.yaPoseeJuego(id)) {
+            System.out.println("⚠ Ya posees la licencia de este juego. No puedes comprarla de nuevo.");
+            return;
+        }
         JSONObject obj = buscarPorId(productos, id);
         if (obj == null) {
             System.out.println("❌ No existe un juego con ese ID.");
             return;
         }
         Producto juego = jsonToProducto(obj);
-        carrito.agregar(juego);          // maneja duplicados internamente
+
+        carrito.agregar(juego);
     }
 
     /*==================== 3. QUITAR DEL CARRITO =======================*/
@@ -112,23 +115,30 @@ public class MenuCliente {
         }
         System.out.print("ID del juego a quitar: ");
         int id = Integer.parseInt(sc.nextLine());
-        carrito.eliminar(id);            // lanza ProductoNoEncontrado si no está
+        carrito.eliminar(id);
     }
 
     /*==================== 5. FINALIZAR COMPRA =========================*/
     private static void finalizarCompra(UserCliente cliente, Carrito carrito) {
         if (carrito.estaVacio()) {
-            System.out.println("🛒 El carrito está vacío.");
+            System.out.println("🛒 El carrito está vacío.\n");
             return;
         }
-        int total = carrito.calcularTotal();
-        List<Producto> comprados = cliente.getJuegosComprados();
-        comprados.addAll(carrito.getElementos());   // agrega las licencias
+
+        List<Producto> items = new ArrayList<>(carrito.getElementos());
+
+        Orden orden = new Orden(items);
+
+        cliente.agregarOrden(orden);
+        cliente.getJuegosComprados().addAll(items);
+
         carrito.vaciar();
 
-        // (opcional) persistir compras en JSON por usuario, no incluido aquí
-        System.out.println("✅ Compra realizada con éxito.");
-        System.out.println("Total pagado: $" + total + "\n");
+        System.out.println("""
+            ✅ Compra realizada con éxito.
+            %s
+            Total pagado: $%d
+            """.formatted(orden, orden.calcularTotal()));
     }
 
     /*==================== 6. VER COMPRADOS ============================*/

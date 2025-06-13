@@ -5,21 +5,18 @@ import service.GestionCrud;
 
 public class Carrito extends GestionCrud<Producto> {
 
-    /*------------------- API DEL CARRITO -------------------*/
-
-    /** Agrega el producto sólo si aún no está en el carrito. */
     public void agregar(Producto p) {
         if (buscarPorId(p.getId()) != null) {
             System.out.println("⚠ El juego \"" + p.getNombre() + "\" ya está en el carrito.");
             return;
         }
-        super.agregar(p);   // validaciones de GestionCrud
+        super.agregar(p);
         System.out.println("✅ \"" + p.getNombre() + "\" agregado al carrito.");
     }
 
 
     public void eliminar(int idProducto) {
-        super.eliminar(idProducto);   // lanza ProductoNoEncontrado si no está
+        super.eliminar(idProducto);
         System.out.println("🗑 Producto eliminado del carrito.");
     }
 
@@ -32,7 +29,6 @@ public class Carrito extends GestionCrud<Producto> {
         for (Producto p : elementos) {
             price += p.getPrecio();
         }
-
         return price;
     }
 
