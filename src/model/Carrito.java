@@ -1,77 +1,57 @@
 package model;
 
 import exceptions.ProductoNoEncontrado;
-import interfaces.ICarrito;
-import java.util.HashMap;
-import java.util.Map;
+import service.GestionCrud;
 
-public class Carrito implements ICarrito {
+public class Carrito extends GestionCrud<Producto> {
 
-    private Map<Producto, Integer> productos;
+    /*------------------- API DEL CARRITO -------------------*/
 
-    public Carrito() {
-        this.productos = new HashMap<>();
-    }
-
-    @Override
-    public boolean agregarProducto(Producto producto) {
-        productos.put(producto, productos.getOrDefault(producto, 0) + 1);
-        return true;
-    }
-
-    @Override
-    public boolean eliminarProducto(Producto producto) {
-        if (!productos.containsKey(producto)) {
-            throw new ProductoNoEncontrado("El producto no está en el carrito.");
-        }
-        productos.remove(producto);
-        return true;
-    }
-
-    @Override
-    public int calcularTotal() {
-        int total = 0;
-        for (Map.Entry<Producto, Integer> entry : productos.entrySet()) {
-            Producto p = entry.getKey();
-            int cantidad = entry.getValue();
-            total += p.getPrecio() * cantidad;
-        }
-        return total;
-    }
-
-    @Override
-    public int cantProductos() {
-        int totalUnidades = 0;
-        for (int cantidad : productos.values()) {
-            totalUnidades += cantidad;
-        }
-        return totalUnidades;
-    }
-
-    public void mostrarCarrito() {
-        if (productos.isEmpty()) {
-            System.out.println("El carrito está vacío.");
+    /** Agrega el producto sólo si aún no está en el carrito. */
+    public void agregar(Producto p) {
+        if (buscarPorId(p.getId()) != null) {
+            System.out.println("⚠ El juego \"" + p.getNombre() + "\" ya está en el carrito.");
             return;
         }
-
-        System.out.println("=== Productos en el carrito ===");
-        for (Map.Entry<Producto, Integer> entry : productos.entrySet()) {
-            Producto p = entry.getKey();
-            int cantidad = entry.getValue();
-            System.out.println("- " + p.getNombre() + " (x" + cantidad + ") - $" + p.getPrecio());
-        }
-        System.out.println("Total: $" + calcularTotal());
+        super.agregar(p);   // validaciones de GestionCrud
+        System.out.println("✅ \"" + p.getNombre() + "\" agregado al carrito.");
     }
 
-    public void vaciarCarrito() {
-        productos.clear();
+
+    public void eliminar(int idProducto) {
+        super.eliminar(idProducto);   // lanza ProductoNoEncontrado si no está
+        System.out.println("🗑 Producto eliminado del carrito.");
+    }
+
+    public void vaciar() {
+        elementos.clear();
+    }
+
+    public int calcularTotal() {
+        int price = 0;
+        for (Producto p : elementos) {
+            price += p.getPrecio();
+        }
+
+        return price;
+    }
+
+    public int cantProductos() {
+        return elementos.size();
     }
 
     public boolean estaVacio() {
-        return productos.isEmpty();
+        return elementos.isEmpty();
     }
 
-    public Map<Producto, Integer> getProductos() {
-        return productos;
+    public void mostrarCarrito() {
+        if (estaVacio()) {
+            System.out.println("🛒 El carrito está vacío.");
+            return;
+        }
+        System.out.println("=== Tu carrito ===");
+        elementos.forEach(p ->
+                System.out.println("- " + p.getNombre() + " — $" + p.getPrecio()));
+        System.out.println("Total a pagar: $" + calcularTotal());
     }
 }

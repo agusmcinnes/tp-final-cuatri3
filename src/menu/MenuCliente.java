@@ -124,7 +124,7 @@ public class MenuCliente {
             Usuario usuario = Sesion.getUsuarioActual();
 
             if (usuario instanceof UserCliente cliente) {
-                cliente.getCarrito().agregarProducto(producto);
+                cliente.getCarrito().agregar(producto);
             }
 
             System.out.println("✅ Producto agregado al carrito: " + producto.getNombre());
