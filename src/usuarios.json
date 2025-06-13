@@ -16,5 +16,11 @@
         "id": 2,
         "rol": "CLIENTE",
         "contraseña": "12345"
+    },
+    {
+        "gmail": "banana@gmail.com",
+        "id": 3,
+        "rol": "CLIENTE",
+        "contraseña": "1234"
     }
 ]

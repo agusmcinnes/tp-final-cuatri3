@@ -1,6 +1,7 @@
 package menu;
 
 import enums.TipoUsuario;
+import exceptions.OpcionInvalidaException;
 import exceptions.UsuarioNoEncontrado;
 import model.usuario.*;
 import org.json.*;
@@ -27,11 +28,16 @@ public class Menu {
             System.out.print("Seleccione: ");
 
             String op = sc.nextLine().trim();
-            switch (op) {
-                case "1" -> mostrarLogin(sc);
-                case "2" -> registrarUsuario(sc);
-                case "0" -> { System.out.println("¡Hasta luego!"); return; }
-                default  -> System.out.println("Opción inválida.\n");
+
+            try {
+                switch (op) {
+                    case "1" -> mostrarLogin(sc);
+                    case "2" -> registrarUsuario(sc);
+                    case "0" -> { System.out.println("¡Hasta luego!"); return; }
+                    default  ->  throw new OpcionInvalidaException("Opción " + op + " no válida.\n");
+                }
+            } catch (OpcionInvalidaException e) {
+                System.out.println(e.getMessage());
             }
         }
     }

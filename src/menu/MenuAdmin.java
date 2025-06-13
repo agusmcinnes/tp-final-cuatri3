@@ -59,10 +59,17 @@ public class MenuAdmin {
     private static void agregarProducto(Scanner sc) {
         try {
             JSONArray productos = leerProductos();
-            int nuevoId = siguienteId(productos);
 
             System.out.print("Nombre: ");
-            String nombre = sc.nextLine();
+            String nombre = sc.nextLine().trim();
+            for (int i = 0; i < productos.length(); i++) {
+                if (nombre.equalsIgnoreCase(productos.getJSONObject(i).getString("nombre"))) {
+                    System.out.println("⚠ Ya existe un juego con ese nombre. No se agregó.");
+                    return;
+                }
+            }
+
+            int nuevoId = siguienteId(productos);
 
             System.out.print("Precio (ARS): ");
             int precio = Integer.parseInt(sc.nextLine());
@@ -82,18 +89,20 @@ public class MenuAdmin {
                     .put("id", nuevoId)
                     .put("nombre", nombre)
                     .put("precio", precio)
-                    .put("categoria", cat.toString())
+                    .put("categoria", cat.name())
                     .put("descripcion", desc);
 
             productos.put(nuevo);
             grabarProductos(productos);
+
             System.out.println("✅ Agregado ID " + nuevoId + ".\n");
 
-        } catch (JSONException | InputMismatchException
+        } catch (JSONException | NumberFormatException
                  | ArrayIndexOutOfBoundsException e) {
             System.out.println("❌ Error al agregar: " + e.getMessage() + "\n");
         }
     }
+
 
     /*==================== 2. ELIMINAR ================================*/
     private static void eliminarProducto(Scanner sc) throws ProductoNoEncontrado, JSONException {
