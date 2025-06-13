@@ -21,6 +21,15 @@ public class Producto implements ObtenerID {
         this.descripcion = descripcion;
     }
 
+    public Producto(String nombre, CategoriaJuego categoria, String descripcion, int precio, int id) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.categoria = categoria;
+        this.descripcion = descripcion;
+        this.id = id;
+    }
+
+
     public String getNombre() {
         return nombre;
     }

@@ -2,7 +2,7 @@ package enums;
 
 public enum CategoriaJuego {
     DEPORTES("Deportes"),
-    ACCION("Acción"),
+    ACCION("Accion"),
     AVENTURA("Aventura"),
     RPG("RPG"),
     ESTRATEGIA("Estrategia"),
