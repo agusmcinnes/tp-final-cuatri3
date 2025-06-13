@@ -16,9 +16,9 @@ public class GestionCrud<T extends ObtenerID> {
         this.elementos = new ArrayList<>();
     }
 
-    // Agregar un elemento
-    public void agregarProducto(T producto) {
-        // Validación solo si T es Producto
+
+    public void agregar(T producto) {
+
         if (producto instanceof Producto) {
             Producto p = (Producto) producto;
             if (p.getNombre() == null || p.getNombre().isBlank()
@@ -31,7 +31,7 @@ public class GestionCrud<T extends ObtenerID> {
         elementos.add(producto);
     }
 
-    public void eliminarProducto(int id) {
+    public void eliminar(int id) {
         T encontrado = buscarPorId(id);
         if (encontrado != null) {
             elementos.remove(encontrado);
@@ -40,7 +40,7 @@ public class GestionCrud<T extends ObtenerID> {
         }
     }
 
-    public void modificarProducto(int id, T nuevoProducto) {
+    public void modificar(int id, T nuevoProducto) {
         for (int i = 0; i < elementos.size(); i++) {
             if (elementos.get(i).getId() == id) {
                 elementos.set(i, nuevoProducto);
@@ -50,17 +50,21 @@ public class GestionCrud<T extends ObtenerID> {
         throw new ProductoNoEncontrado("No se encontró el producto con ID " + id + " para modificar");
     }
 
-    public void mostrarInventario() {
+    public String mostrar() {
+        StringBuilder msj = new StringBuilder();
+
         if (elementos.isEmpty()) {
             System.out.println("No hay productos en el inventario.");
-            return;
+            return null;
         }
         for (T p : elementos) {
-            System.out.println(p.toString());
+            msj.append(p.toString()).append("\n");
         }
+
+        return msj.toString();
     }
 
-    private T buscarPorId(int id) {
+    protected T buscarPorId(int id) {
         for (T e : elementos) {
             if (e.getId() == id) {
                 return e;

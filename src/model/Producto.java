@@ -3,6 +3,8 @@ package model;
 import enums.CategoriaJuego;
 import interfaces.ObtenerID;
 
+import java.util.Objects;
+
 public class Producto implements ObtenerID {
     private String nombre;
     private int id;
@@ -69,4 +71,26 @@ public class Producto implements ObtenerID {
     }
 
 
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "nombre='" + nombre + '\'' +
+                ", id=" + id +
+                ", precio=" + precio +
+                ", categoria=" + categoria +
+                ", descripcion='" + descripcion + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Producto producto = (Producto) o;
+        return id == producto.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }
