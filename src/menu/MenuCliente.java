@@ -134,11 +134,11 @@ public class MenuCliente {
 
         carrito.vaciar();
 
-        System.out.println("""
-            ✅ Compra realizada con éxito.
-            %s
-            Total pagado: $%d
-            """.formatted(orden, orden.calcularTotal()));
+        System.out.println(
+                "✅ Compra realizada con éxito.\n" +
+                        orden + "\n" +
+                        "Total pagado: $" + orden.calcularTotal() + "\n"
+        );
     }
 
     /*==================== 6. VER COMPRADOS ============================*/
