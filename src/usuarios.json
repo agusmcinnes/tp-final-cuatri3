@@ -1,14 +1,20 @@
 [
-  {
-    "gmail": "agustin@gmail.com",
-    "contraseña": "1234",
-    "id": 0,
-    "rol": "ADMINISTRADOR"
-  },
-  {
-    "gmail": "sofia@gmail.com",
-    "contraseña": "1234",
-    "id": 1,
-    "rol": "CLIENTE"
-  }
+    {
+        "gmail": "agustin@gmail.com",
+        "id": 0,
+        "rol": "ADMINISTRADOR",
+        "contraseña": "1234"
+    },
+    {
+        "gmail": "sofia@gmail.com",
+        "id": 1,
+        "rol": "CLIENTE",
+        "contraseña": "1234"
+    },
+    {
+        "gmail": "lucre@gmail.com",
+        "id": 2,
+        "rol": "CLIENTE",
+        "contraseña": "12345"
+    }
 ]
