@@ -54,7 +54,7 @@ public class MenuCliente {
                     case 4 -> carrito.mostrarCarrito();
                     case 5 -> finalizarCompra(cliente, carrito);
                     case 6 -> verJuegosAdquiridos(cliente);
-                    case 0 -> {System.out.println("👋 Sesión cerrada."); Sesion.cerrarSesion(); Menu.mostrarLogin();}
+                    case 0 -> {System.out.println("👋 Sesión cerrada."); Sesion.cerrarSesion(); Menu.iniciar();}
                     default -> throw new OpcionInvalidaException("Opción " + op + " no válida.");
                 }
             } catch (OpcionInvalidaException | ProductoNoEncontrado e) {

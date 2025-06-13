@@ -46,7 +46,7 @@ public class MenuAdmin {
                     case 2 -> eliminarProducto(scanner);
                     case 3 -> modificarProducto(scanner);
                     case 4 -> verProductos();
-                    case 0 -> { System.out.println("👋 Sesión cerrada."); Sesion.cerrarSesion(); Menu.mostrarLogin();}
+                    case 0 -> { System.out.println("👋 Sesión cerrada."); Sesion.cerrarSesion(); Menu.iniciar();}
                     default -> throw new OpcionInvalidaException("Opción " + op + " no válida.");
                 }
             } catch (ProductoNoEncontrado | OpcionInvalidaException | JSONException e) {
