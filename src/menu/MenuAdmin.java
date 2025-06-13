@@ -3,6 +3,8 @@ package menu;
 import enums.CategoriaJuego;
 import exceptions.OpcionInvalidaException;
 import exceptions.ProductoNoEncontrado;
+import model.usuario.Sesion;
+import model.usuario.UserAdmin;
 import org.json.*;
 import service.JsonUtiles;
 
@@ -15,7 +17,7 @@ public class MenuAdmin {
     private static final String ARCHIVO_PRODUCTOS = "src/productos.json";
 
     /*==================================================================*/
-    public static void mostrarMenu() {
+    public static void mostrarMenu(UserAdmin admin) {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -37,17 +39,17 @@ public class MenuAdmin {
             try {
                 op = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
-                op = -1;                                // fuerza “opción inválida”
+                op = -1;
             }
 
             try {
                 switch (op) {
                     case 1 -> agregarProducto(scanner);
-                    case 2 -> eliminarProducto(scanner);     // puede lanzar ProductoNoEncontrado
-                    case 3 -> modificarProducto(scanner);    //  idem
+                    case 2 -> eliminarProducto(scanner);
+                    case 3 -> modificarProducto(scanner);
                     case 4 -> verProductos();
                     case 5 -> System.out.println("🚧 Aún no implementado.");
-                    case 0 -> { System.out.println("👋 Sesión cerrada."); return; }
+                    case 0 -> { System.out.println("👋 Sesión cerrada."); Sesion.cerrarSesion(); Menu.mostrarLogin();}
                     default -> throw new OpcionInvalidaException("Opción " + op + " no válida.");
                 }
             } catch (ProductoNoEncontrado | OpcionInvalidaException | JSONException e) {
