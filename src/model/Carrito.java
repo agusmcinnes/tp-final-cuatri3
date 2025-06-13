@@ -50,6 +50,4 @@ public class Carrito extends GestionCrud<Producto> {
                 System.out.println("- " + p.getNombre() + " — $" + p.getPrecio()));
         System.out.println("Total a pagar: $" + calcularTotal());
     }
-
-
 }

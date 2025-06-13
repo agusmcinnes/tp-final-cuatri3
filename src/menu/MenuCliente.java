@@ -10,7 +10,6 @@ import model.usuario.Sesion;
 import model.usuario.UserCliente;
 import org.json.*;
 import service.JsonUtiles;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
