@@ -19,5 +19,12 @@
         "categoria": "Estrategia",
         "id": 3,
         "nombre": "League of legends"
+    },
+    {
+        "descripcion": "Juego de categoria indefinida",
+        "precio": 12000,
+        "categoria": "Otro",
+        "id": 4,
+        "nombre": "Worms"
     }
 ]

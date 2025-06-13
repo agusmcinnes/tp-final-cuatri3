@@ -7,7 +7,8 @@ public enum CategoriaJuego {
     RPG("RPG"),
     ESTRATEGIA("Estrategia"),
     SIMULACION("Simulación"),
-    INDIE("Indie");
+    INDIE("Indie"),
+    OTRO("Otro");
 
     private final String displayName;
 
