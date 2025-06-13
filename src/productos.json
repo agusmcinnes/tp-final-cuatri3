@@ -1,7 +1,7 @@
 [
     {
         "descripcion": "Juego de futbol muy interesante!",
-        "precio": 60000,
+        "precio": 50000,
         "categoria": "Deportes",
         "id": 1,
         "nombre": "Fifa"

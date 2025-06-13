@@ -30,7 +30,6 @@ public class MenuAdmin {
                     2) Eliminar producto
                     3) Modificar producto
                     4) Ver productos
-                    5) Ver órdenes (pendiente)
                     0) Cerrar sesión""");
             System.out.print("Seleccione: ");
 
