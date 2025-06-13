@@ -49,7 +49,7 @@ public class Menu {
                         if (rol.equalsIgnoreCase("ADMINISTRADOR")) {
                             UserAdmin admin = new UserAdmin(gmailJson, contraseñaJson, idJson);
                             Sesion.iniciarSesion(admin);
-                            MenuAdmin.mostrarMenu();
+                            MenuAdmin.mostrarMenu(admin);
                         } else if (rol.equalsIgnoreCase("CLIENTE")) {
                             UserCliente cliente = new UserCliente(gmailJson, contraseñaJson, idJson);
                             Sesion.iniciarSesion(cliente);
