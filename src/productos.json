@@ -12,5 +12,12 @@
         "categoria": "Accion",
         "id": 2,
         "nombre": "GTA V"
+    },
+    {
+        "descripcion": "la pesadilla",
+        "precio": 2000,
+        "categoria": "Estrategia",
+        "id": 3,
+        "nombre": "League of legends"
     }
 ]

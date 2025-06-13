@@ -31,7 +31,6 @@ public class UserCliente extends Usuario {
         List<Producto> juegos = new ArrayList<>();
 
         for (Orden o : historial) {
-            // Sin duplicados: evitamos añadir si ya existe ese ID
             for (Producto p : o.getProductos()) {
                 if (juegos.stream().noneMatch(j -> j.getId() == p.getId())) {
                     juegos.add(p);
@@ -46,9 +45,14 @@ public class UserCliente extends Usuario {
         return historial;
     }
 
-//    @Override
-//    public void getMenu() {
-//        MenuCliente menu = new MenuCliente();
-//        menu.mostrarMenu();
-//    }
+    public void agregarOrden(Orden orden) {
+        this.historial.add(orden);
+    }
+
+    public boolean yaPoseeJuego(int idJuego) {
+        return getJuegosComprados()
+                .stream()
+                .anyMatch(j -> j.getId() == idJuego);
+    }
+
 }

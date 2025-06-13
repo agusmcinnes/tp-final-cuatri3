@@ -13,7 +13,6 @@ import java.util.Scanner;
 
 public class MenuAdmin {
 
-    /*--- Archivo de productos ---*/
     private static final String ARCHIVO_PRODUCTOS = "src/productos.json";
 
     /*==================================================================*/
@@ -48,7 +47,6 @@ public class MenuAdmin {
                     case 2 -> eliminarProducto(scanner);
                     case 3 -> modificarProducto(scanner);
                     case 4 -> verProductos();
-                    case 5 -> System.out.println("🚧 Aún no implementado.");
                     case 0 -> { System.out.println("👋 Sesión cerrada."); Sesion.cerrarSesion(); Menu.mostrarLogin();}
                     default -> throw new OpcionInvalidaException("Opción " + op + " no válida.");
                 }
