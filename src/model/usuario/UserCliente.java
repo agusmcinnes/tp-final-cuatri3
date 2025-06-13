@@ -18,6 +18,8 @@ public class UserCliente extends Usuario {
 
     public UserCliente (String gmail, String contraseña, int id){
         super(gmail, contraseña, id, TipoUsuario.CLIENTE);
+        this.carrito = new Carrito();
+        this.historial = new ArrayList<>();
     }
 
     public Carrito getCarrito() {

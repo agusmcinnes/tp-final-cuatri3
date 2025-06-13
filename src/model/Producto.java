@@ -67,4 +67,6 @@ public class Producto implements ObtenerID {
     public void setPrecio(int precio) {
         this.precio = precio;
     }
+
+
 }
