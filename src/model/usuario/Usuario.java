@@ -2,6 +2,8 @@ package model.usuario;
 
 import enums.TipoUsuario;
 
+import java.util.Objects;
+
 public abstract class Usuario {
     protected static int contadorIds = 1;
 
@@ -49,5 +51,27 @@ public abstract class Usuario {
 
    // public abstract void getMenu();
 
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", gmail='" + gmail + '\'' +
+                ", contraseña='" + contraseña + '\'' +
+                ", rol=" + rol +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Usuario usuario = (Usuario) o;
+        return id == usuario.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }
 
